@@ -1,12 +1,14 @@
+import { cookies } from 'next/headers'
 import sleep from '../utils/sleep'
 
 const Analytics = async () => {
-  await sleep(6000)
+  cookies() // Nextjs 的自动静态优化后导致内容在构建阶段就确认下来，所以loading就不需要了，加这个是为了变成动态渲染
+  await sleep(1000)
 
   // console.log('🚀 ~  : Analytics -> ', error)
 
   return (
-    <div className="w-1/2 bg-pink-300 h-[calc(100vh-44px)] text-white flex items-center justify-center">
+    <div className="w-screen bg-pink-300 h-[calc(100vh-44px-56px)] text-white flex items-center justify-center">
       Analytics Page
     </div>
   )

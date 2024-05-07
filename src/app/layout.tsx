@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,21 +12,24 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  team,
   analytics
 }: Readonly<{
   children: React.ReactNode
-  team: React.ReactNode
   analytics: React.ReactNode
 }>) {
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col`}>
         {children}
-        <div className="flex items-center justify-center">
-          {team}
-          {analytics}
-        </div>
+        <nav className="flex items-center justify-center gap-6 py-4">
+          <Link href="/page-views" className="hover:text-green-600">
+            Page Views
+          </Link>
+          <Link href="/visitors" className="hover:text-green-600">
+            Visitors
+          </Link>
+        </nav>
+        {analytics}
       </body>
     </html>
   )
