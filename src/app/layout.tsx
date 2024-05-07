@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Verify from './components/verify'
-import { Suspense } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,20 +11,21 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  login,
-  dashboard
+  team,
+  analytics
 }: Readonly<{
   children: React.ReactNode
-  login: React.ReactNode
-  dashboard: React.ReactNode
+  team: React.ReactNode
+  analytics: React.ReactNode
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} flex flex-col`}>
         {children}
-        <Suspense fallback={<div>Loading ...</div>}>
-          <Verify login={login} dashboard={dashboard}></Verify>
-        </Suspense>
+        <div className="flex items-center justify-center">
+          {team}
+          {analytics}
+        </div>
       </body>
     </html>
   )
