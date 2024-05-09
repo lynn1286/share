@@ -1,13 +1,13 @@
+import { cookies } from 'next/headers'
 import Image from 'next/image'
 
-export const revalidate = 10 // 设置时效
-
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams: { sku: string } }) {
   const { data } = await (
     await fetch('https://api.uomg.com/api/rand.music?sort=热歌榜&format=json')
   ).json()
 
-  console.log('🚀 ~  : Home -> data', data)
+  // const cookieStore = cookies()
+  // const theme = cookieStore.get('theme')
 
   return (
     <div>
@@ -16,6 +16,7 @@ export default async function Home() {
       <Image alt={data.name} src={data.picurl} width={300} height={300}></Image>
 
       <div className="mt-6">当前时间： {new Date().toLocaleTimeString()}</div>
+      <div>{searchParams.sku}</div>
     </div>
   )
 }
