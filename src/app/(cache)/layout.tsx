@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
+import { NavigationEvents } from './utils/navigation-events'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,10 +16,13 @@ export default function CacheLayout({ children }: { children: ReactNode }) {
             4. router.refresh
         
         */}
-        <a href="/about">About</a>
-        <a href="/settings">Settings</a>
+        <Link href="/about">About</Link>
+        <Link href="/settings">Settings</Link>
       </nav>
       {children}
+      <Suspense fallback={null}>
+        <NavigationEvents />
+      </Suspense>
     </section>
   )
 }
