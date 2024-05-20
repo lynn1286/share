@@ -15,8 +15,8 @@ export default function CacheLayout({ children }: { children: ReactNode }) {
             4. router.refresh
         
         */}
-        <Link href="/about">About</Link>
-        <Link href="/settings">Settings</Link>
+        <a href="/about">About</a>
+        <a href="/settings">Settings</a>
       </nav>
       {children}
     </section>
